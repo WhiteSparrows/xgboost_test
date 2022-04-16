@@ -4,13 +4,18 @@
 # fit a final xgboost model on the housing dataset and make a prediction
 from numpy import asarray
 from pandas import read_csv
+import pandas as pd
 from xgboost import XGBRegressor
 # load the dataset
 url = 'https://raw.githubusercontent.com/jbrownlee/Datasets/master/housing.csv'
 dataframe = read_csv(url, header=None)
+print(dataframe.info())
+missing  = dataframe.isnull().sum()
+print(missing)
 data = dataframe.values
 # split dataset into input and output columns
 X, y = data[:, :-1], data[:, -1]
+print(missing)
 # define model
 model = XGBRegressor()
 # fit model
